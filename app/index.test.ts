@@ -5,10 +5,10 @@ import * as redis from "redis";
 let app: Express.Application;
 let client: RedisClient;
 
-const REDIS_URL = "redis://default:test_env@localhost:6380";
+const TEST_REDIS_URL = process.env.TEST_REDIS_URL;
 
 beforeAll(async () => {
-  client = redis.createClient({ url: REDIS_URL });
+  client = redis.createClient({ url: TEST_REDIS_URL });
   await client.connect();
   app = createApp(client);
 });
